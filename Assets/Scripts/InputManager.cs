@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class InputManager : MonoBehaviour
 {
     public UnityEvent<Vector3> OnMove = new UnityEvent<Vector3>();
+    public UnityEvent OnJump = new UnityEvent();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -13,6 +14,11 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // jump input controls
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            OnJump?.Invoke();
+        }
         // movement input controls
         Vector3 inputDirection = Vector3.zero;
         if (Input.GetKey(KeyCode.W))
